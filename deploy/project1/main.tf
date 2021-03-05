@@ -15,7 +15,7 @@ provider "azurerm" {
 module "storage" {
   source = "../../modules/blob"
   location = var.location
-  rgp_name = "assignment_test"
+  rgp_name = var.rgp_name
   storage_account_name = "assignmentstorage"
   storage_container_name = "assignmentcontainer"
   file_name = "test2.txt"
@@ -43,7 +43,7 @@ module "vm" {
   username = "rajput"
   pub_id = module.vnet.public_ip_id
   storage_access_key = module.storage.storage_access_key
-  rgp_name = var.location
+  rgp_name = var.rgp_name
   storage_account_name = module.storage.storage_account_name
   storage_container_name = module.storage.storage_container_name
   subnet_id = module.vnet.subnet_id

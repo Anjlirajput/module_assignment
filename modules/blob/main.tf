@@ -6,7 +6,7 @@ resource "random_string" "random-name" {
   special = false
 }
 
-resource "azurerm_resource_group" "rgp" {
+resource "azurerm_resource_group" "rgp_name" {
   location = var.location
   name = var.rgp_name
 }
@@ -16,7 +16,8 @@ resource "azurerm_storage_account" "storage_account_assignment" {
   account_tier = "Standard"
   location = var.location
   name = "${var.storage_account_name}${random_string.random-name.result}"
-  resource_group_name =var.rgp_name
+  resource_group_name =azurerm_resource_group.rgp_name.name
+
 
   tags = {
     "name"="blob storage"
@@ -27,7 +28,7 @@ resource "azurerm_storage_account" "storage_account_assignment" {
 resource "azurerm_storage_container" "container_account_assignment" {
   name                  = "${var.storage_container_name}${random_string.random-name.result}"
   storage_account_name  = azurerm_storage_account.storage_account_assignment.name
-  container_access_type = "blob"
+  container_access_type = "private"
 
 }
 

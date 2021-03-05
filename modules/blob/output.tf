@@ -1,6 +1,6 @@
 
 output "rgp_name" {
-  value = azurerm_resource_group.rgp.name
+  value = azurerm_resource_group.rgp_name.name
 }
 
 output "storage_account_name" {

@@ -5,5 +5,5 @@ variable "location" {
 
 variable "rgp_name" {
   type = string
-  default = "test_rgp"
+  default = "testrgp"
 }
